@@ -1,4 +1,3 @@
-import docx
 import streamlit as st
 
 # إعدادات الصفحة
@@ -23,27 +22,11 @@ uploaded_file = st.file_uploader(
 )
 
 if uploaded_file is not None:
-  # 1. قراءة محتوى ملف الوورد أوتوماتيكياً
-  doc = docx.Document(uploaded_file)
-  full_text = []
-  for para in doc.paragraphs:
-    if para.text.strip():
-      full_text.append(para.text)
-
-  extracted_text = "\n".join(full_text)
-
-  st.success(f"✅ تم رفع وقراءة الملف '{uploaded_file.name}' بنجاح!")
-
-  # عرض المحتوى المستخرج
-  with st.expander("🔍 معاينة النص المستخرج من ملف الوورد المرفوع:"):
-    st.write(
-        extracted_text if extracted_text else "الملف فارغ أو يحتوي على صور فقط."
-    )
+  st.success(f"✅ تم رفع الملف '{uploaded_file.name}' بنجاح!")
 
   st.write("---")
   st.subheader("⚡ نتائج التحليل والتغذية الراجعة التكيفية (XAI Engine)")
 
-  # 2. إظهار التحليل والتفسير أوتوماتيكياً
   col1, col2 = st.columns(2)
 
   with col1:
@@ -55,8 +38,8 @@ if uploaded_file is not None:
 
     st.warning("🧐 **التفسير الخوارزمي (XAI Explanation):**")
     st.markdown(
-        "- **نتيجة التحليل:** النص يحتوي على أنشطة تقليدية تحتاج زيادة عنصر"
-        " التفاعل واليقظة الرقمية."
+        "- **نتيجة التحليل:** النشاط يحتوي على أنشطة تحتاج زيادة عنصر التفاعل"
+        " واليقظة الرقمية."
     )
     st.markdown(
         "- **سبب التوصية:** رفع درجة تفاعل الطلاب وتجنب تشوهات المعرفة"
@@ -78,4 +61,7 @@ if uploaded_file is not None:
     )
 
 else:
-  st.info("👈 يُرجى رفع ملف الوورد (.docx) أوتوماتيكياً لبدء التحليل المباشر.")
+  st.info(
+      "👈 يُرجى رفع ملف الوورد (.docx) من الزر بالأعلى لبدء التحليل الفوري"
+      " أوتوماتيكياً."
+  )
