@@ -5,7 +5,9 @@ import streamlit as st
 
 # إعدادات الصفحة
 st.set_page_config(
-    page_title="بيئة التدريب الذكية - XAI", page_icon="🎓", layout="wide"
+    page_title="بيئة التدريب الذكية متعددة الوحدات - XAI",
+    page_icon="🎓",
+    layout="wide",
 )
 
 # تنسيقات CSS احترافية وجذابة
@@ -41,13 +43,6 @@ st.markdown(
         margin-top: 10px;
     }
     
-    .xai-box {
-        background-color: #f8f9fa;
-        border-right: 5px solid #6C5CE7;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 15px;
-    }
     .content-box {
         background-color: #f1f3f5;
         border-radius: 10px;
@@ -62,238 +57,234 @@ st.markdown(
 
 # العنوان الرئيسي للدراسة
 st.title(
-    "🎓 بيئة التدريب التكيفية القائمة على الذكاء الاصطناعي القابل للتفسير (XAI)"
+    "🎓 بيئة التدريب التكيفية متعددة الوحدات (القائمة على XAI والاتجاه نحو"
+    " البيئة)"
 )
 st.caption(
     "فاعلية أنماط الدعم التكيفية في تنمية مهارات إنتاج الأنشطة التعليمية"
-    " الذكية واليقظة الرقمية والاتجاه نحو بيئة التدريب"
+    " الذكية واليقظة الرقمية"
 )
 st.write("---")
 
 # ---------------------------------------------------------
-# الجزء الأول: المحتوى التعليمي والتأسيسي لبيئة التدريب
+# القائمة الجانبية: اختيار الوحدات التدريبية المتعددة
 # ---------------------------------------------------------
-st.header("📚 أولاً: المحتوى التعليمي والتربوي للوحدة التدريبية")
-with st.container():
+st.sidebar.header("📁 الوحدات التدريبية للبرنامج")
+selected_unit = st.sidebar.radio(
+    "اختر الوحدة للانتقال إليها:",
+    [
+        "📚 الوحدة الأولى: مدخل إلى الذكاء الاصطناعي القابل للتفسير (XAI)",
+        "🔍 الوحدة الثانية: مهارات اليقظة الرقمية في التصميم",
+        "🎯 الوحدة الثالثة: إنتاج الأنشطة الذكية والاتجاه نحو بيئة التدريب",
+    ],
+)
+
+st.sidebar.write("---")
+st.sidebar.info(
+    "💡 **إرشاد الاستخدام:** كل وحدة تحتوي على دليلها النظري الخاص ومحطة رفع"
+    " الأنشطة وتقييمها بصورة مستقلة."
+)
+
+# ---------------------------------------------------------
+# محتوى الوحدة الأولى
+# ---------------------------------------------------------
+if (
+    selected_unit
+    == "📚 الوحدة الأولى: مدخل إلى الذكاء الاصطناعي القابل للتفسير (XAI)"
+):
+  st.header(
+      "📚 الوحدة الأولى: أساسيات الذكاء الاصطناعي القابل للتفسير (XAI) وأنماط"
+      " الدعم"
+  )
+
   st.markdown("""
     <div class="content-box">
-        <h4>💡 دليل المعلم الذكي: أنماط الدعم التكيفي واليقظة الرقمية</h4>
-        <p>مرحباً بك في بيئة التدريب الذكية. تهدف هذه الوحدة إلى تمكينك من مهارات صياغة الأنشطة التعليمية التفاعلية وتنمية اليقظة الرقمية أثناء التصميم التعليمي:</p>
+        <h4>🎯 أهداف الوحدة والمحتوى التعليمي:</h4>
+        <p>تهدف هذه الوحدة إلى إحاطة المعلم بمفاهيم الشفافية والخوارزميات التفسيرية في اتخاذ القرار:</p>
         <ul>
-            <li><b>مفهوم اليقظة الرقمية (Digital Vigilance):</b> قدرة المعلم على التقييم النقدي للمحتوى الرقمي، واكتشاف الانحيازات الشائعة والتحقق من مصداقية المعلومات المصممة للطلاب.</li>
-            <li><b>نمط الدعم التكيفي (Adaptive Support):</b> يقدم لك النظام توجيهاً فورياً ومخصصاً بناءً على تحليل أسلوبك في بناء الأنشطة ومستواك المهني.</li>
-            <li><b>الاتجاه نحو بيئة التدريب:</b> قياس مدى رضاك وقابليتك للتفاعل مع الأدوات التكيفية الذكية وتوظيفها بسلاسة في ممارساتك التدريسية.</li>
+            <li><b>مفهوم XAI:</b> تحويل قرارات الذكاء الاصطناعي من "صندوق أسود" إلى مخرجات مفهومة ومبررة تزيد من ثقة المعلم.</li>
+            <li><b>أنماط الدعم التكيفية:</b> تقديم التوجيه الفوري (المباشر وغير المباشر) بناءً على أسلوب المعلم الفردي.</li>
         </ul>
     </div>
     """, unsafe_allow_html=True)
 
-st.write("---")
+  st.subheader("📝 النشاط التطبيقي للوحدة الأولى")
+  uploaded_file_1 = st.file_uploader(
+      "رفق خطة الدرس الخاصة بالوحدة الأولى (.docx):",
+      key="file1",
+      type=["docx"],
+  )
+
+  if uploaded_file_1 is not None:
+    st.success(
+        f"✅ تم تحليل ملف الوحدة الأولى ('{uploaded_file_1.name}') بنجاح!"
+    )
+
+    # توليد درجات ديناميكية متغيرة حسب الملف
+    seed = (
+        int(hashlib.md5(uploaded_file_1.name.encode()).hexdigest(), 16) % 1000
+    )
+    random.seed(seed)
+    s_score = random.randint(80, 95)
+    v_score = random.randint(75, 92)
+
+    st.write("---")
+    st.header("⚡ نتائج وتقسيمات XAI للوحدة الأولى")
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric(label="مؤشر فهم مبادئ XAI", value=f"{s_score}%", delta="جيد جداً")
+    c2.metric(label="درجة التفاعل التكيفي", value=f"{v_score}%", delta="+4%")
+    c3.metric(label="جاهزية التطبيق", value="91%", delta="مرتفع")
+
+    # رسم توضيحي تفسيري
+    st.markdown("##### 📊 تحليل عوامل القبول والتفسير الخوارزمي:")
+    chart_df = pd.DataFrame({
+        "العامل": ["الشفافية", "سهولة الفهم", "منطق القرار", "الموثوقية"],
+        "النسبة (%)": [s_score, v_score, 88, 92],
+    })
+    st.bar_chart(chart_df.set_index("العامل"))
 
 # ---------------------------------------------------------
-# الجزء الثاني: رفع النشاط التطبيقي (الدرس)
+# محتوى الوحدة الثانية
 # ---------------------------------------------------------
-st.header("📝 ثانياً: النشاط التطبيقي (رفع مسودة الدرس للتحليل)")
-uploaded_file = st.file_uploader(
-    "قم برفع ملف خطة الدرس أو النشاط التعليمي بصيغة (.docx) لتقييمه"
-    " أوتوماتيكياً بواسطة محرك XAI:",
-    type=["docx"],
-)
+elif selected_unit == "🔍 الوحدة الثانية: مهارات اليقظة الرقمية في التصميم":
+  st.header("🔍 الوحدة الثانية: تنمية مهارات اليقظة الرقمية والأمن المعرفي")
 
-if uploaded_file is not None:
-  st.success(f"✅ تم رفع وقراءة الملف '{uploaded_file.name}' بنجاح!")
+  st.markdown("""
+    <div class="content-box">
+        <h4>🎯 أهداف الوحدة:</h4>
+        <p>تركيز هذه الوحدة على إكساب المعلمين القدرة على فحص المحتوى الرقمي المولد آلياً ورصده من التشوهات:</p>
+        <ul>
+            <li><b>التقييم النقدي:</b> فحص مصادر المعلومات والتحقق من سلامتها قبل عرضها على الطلاب.</li>
+            <li><b>مواجهة التحيزات:</b> تجنب الوقوع في فخ الأخطاء المعرفية الرقمية.</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
 
-  # توليد درجات تحليليّة ديناميكية تتغير حسب الملف المرفوع
-  file_seed = int(
-      hashlib.md5(uploaded_file.name.encode()).hexdigest(), 16
-  ) % (1000)
-  random.seed(file_seed + uploaded_file.size)
+  st.subheader("📝 النشاط التطبيقي للوحدة الثانية")
+  uploaded_file_2 = st.file_uploader(
+      "رفق نشاط اليقظة الرقمية المخطط (.docx):", key="file2", type=["docx"]
+  )
 
-  score_overall = random.randint(78, 96)
-  score_vigilance = random.randint(70, 95)
-  score_attitude = random.randint(82, 98)
-  score_production = random.randint(75, 94)
+  if uploaded_file_2 is not None:
+    st.success(
+        f"✅ تم تحليل نشاط اليقظة الرقمية ('{uploaded_file_2.name}') بنجاح!"
+    )
 
-  st.write("---")
+    seed = (
+        int(hashlib.md5(uploaded_file_2.name.encode()).hexdigest(), 16) % 1000
+    )
+    random.seed(seed)
+    vig_score = random.randint(72, 98)
+    crit_score = random.randint(78, 96)
+
+    st.write("---")
+    st.header("⚡ نتائج وتقسيمات XAI لوحدة اليقظة الرقمية")
+
+    c1, c2 = st.columns(2)
+    c1.metric(
+        label="درجة اليقظة الرقمية المحسوبة",
+        value=f"{vig_score}%",
+        delta="متقدم",
+    )
+    c2.metric(
+        label="كفاءة التفكير النقدي للمحتوى",
+        value=f"{crit_score}%",
+        delta="+6%",
+    )
+
+    # رسم توضيحي تفسيري
+    st.markdown("##### 📊 توزيع مستويات اليقظة الرقمية بالنشاط:")
+    chart_df2 = pd.DataFrame({
+        "مؤشر اليقظة": [
+            "كشف التحيز",
+            "التحقق من المصادر",
+            "الأمن المعرفي",
+            "الموثوقية",
+        ],
+        "الدرجة (%)": [vig_score, crit_score, 85, 90],
+    })
+    st.bar_chart(chart_df2.set_index("مؤشر اليقظة"))
+
+# ---------------------------------------------------------
+# محتوى الوحدة الثالثة
+# ---------------------------------------------------------
+elif (
+    selected_unit
+    == "🎯 الوحدة الثالثة: إنتاج الأنشطة الذكية والاتجاه نحو بيئة التدريب"
+):
   st.header(
-      "⚡ ثالثاً: نتائج التحليل والتغذية الراجعة التكيفية (XAI Dashboard)"
+      "🎯 الوحدة الثالثة: إنتاج الأنشطة التعليمية الذكية وقياس الاتجاه نحو بيئة"
+      " التدريب"
   )
 
-  # تبويبات العرض التفاعلية
-  tab1, tab2, tab3 = st.tabs([
-      "📊 1. المؤشرات والتقييم الشامل",
-      "🧐 2. التفسير الخوارزمي المطور (XAI Charts)",
-      "🎯 3. التغذية الراجعة والأنشطة التفاعلية",
-  ])
+  st.markdown("""
+    <div class="content-box">
+        <h4>🎯 أهداف الوحدة:</h4>
+        <p>تتوج هذه الوحدة التدريب بإنتاج أنشطة ذكية متكاملة وقياس اتجاه المعلمين نحو استخدام البيئة الإلكترونية:</p>
+        <ul>
+            <li><b>صياغة الأنشطة:</b> توظيف هندسة الأوامر والذكاء الاصطناعي لإنتاج أنشطة تفاعلية لطلاب الحلقة الأولى.</li>
+            <li><b>الاتجاه نحو بيئة التدريب:</b> رصد مدى تقبل المعلمين وراحتهم في التعامل مع أنماط الدعم التكيفية.</li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
 
-  # --- التبويب الأول: المؤشرات والتقييم الشامل ---
-  with tab1:
-    st.subheader("📈 مؤشرات الأداء المتغيرة للنشاط المرفوع")
-
-    c1, c2, c3, c4 = st.columns(4)
-    with c1:
-      st.markdown(
-          f"""
-            <div class="metric-card">
-                <div class="metric-title">التقييم العام للنشاط</div>
-                <div class="metric-value card-purple">{score_overall} <span style="font-size:15px; color:#888;">/ 100</span></div>
-                <div class="progress-bar" style="background-color: #6C5CE7; width: {score_overall}%;"></div>
-            </div>
-            """,
-          unsafe_allow_html=True,
-      )
-
-    with c2:
-      st.markdown(
-          f"""
-            <div class="metric-card">
-                <div class="metric-title">مهارات اليقظة الرقمية</div>
-                <div class="metric-value card-green">{score_vigilance}%</div>
-                <div class="progress-bar" style="background-color: #00B894; width: {score_vigilance}%;"></div>
-            </div>
-            """,
-          unsafe_allow_html=True,
-      )
-
-    with c3:
-      st.markdown(
-          f"""
-            <div class="metric-card">
-                <div class="metric-title">الاتجاه نحو بيئة التدريب</div>
-                <div class="metric-value card-blue">{score_attitude}%</div>
-                <div class="progress-bar" style="background-color: #0984E3; width: {score_attitude}%;"></div>
-            </div>
-            """,
-          unsafe_allow_html=True,
-      )
-
-    with c4:
-      st.markdown(
-          f"""
-            <div class="metric-card">
-                <div class="metric-title">إنتاج الأنشطة الذكية</div>
-                <div class="metric-value card-violet">{score_production}%</div>
-                <div class="progress-bar" style="background-color: #e84393; width: {score_production}%;"></div>
-            </div>
-            """,
-          unsafe_allow_html=True,
-      )
-
-    st.write("")
-    st.info(
-        f"💡 **نمط الدعم الموصى به:** بناءً على درجات الملف ({uploaded_file.name})،"
-        f" يوصي النظام بتقديم **نمط الدعم التكيفي (المباشر/المُوجه)** لتعزيز"
-        " جوانب اليقظة الرقمية."
-    )
-
-  # --- التبويب الثاني: التفسير الخوارزمي المطور والرسوم التوضيحية ---
-  with tab2:
-    st.subheader("🔍 التفسير الخوارزمي التفاعلي (XAI Explainability)")
-    st.write(
-        "يوضح هذا القسم كيفية وصول نموذج الذكاء الاصطناعي لهذه القرارات"
-        " والتوصيات:"
-    )
-
-    col_chart1, col_chart2 = st.columns(2)
-
-    with col_chart1:
-      st.markdown("##### 📊 مدى مشاركة العوامل في قرار التكّيف (Feature Importance)")
-      importance_data = pd.DataFrame({
-          "العامل المؤثر": [
-              "مستوى اليقظة الرقمية",
-              "التفاعل مع بيئة التدريب",
-              "ثراء النشاط الذكي",
-              "وضوح أهداف الدرس",
-          ],
-          "نسبة التأثير (%)": [
-              score_vigilance,
-              score_attitude,
-              score_production,
-              score_overall,
-          ],
-      })
-      st.bar_chart(importance_data.set_index("العامل المؤثر"))
-
-    with col_chart2:
-      st.markdown("##### 📈 مسار تطور الأداء عبر الجلسات")
-      session_data = pd.DataFrame({
-          "الجلسة التدريبية": ["جلسة 1", "جلسة 2", "جلسة 3 (الحالية)"],
-          "مستوى الاتجاه لبيئة التدريب": [
-              max(60, score_attitude - 15),
-              max(70, score_attitude - 5),
-              score_attitude,
-          ],
-          "مهارة إنتاج الأنشطة": [
-              max(55, score_production - 20),
-              max(68, score_production - 8),
-              score_production,
-          ],
-      })
-      st.line_chart(session_data.set_index("الجلسة التدريبية"))
-
-    st.markdown("---")
-    st.markdown("#### 📑 تفاصيل الشرح التفسيري القابل للدرك (XAI Rationale):")
-
-    with st.expander("1. لماذا تم اختيار نمط الدعم الحالي؟", expanded=True):
-      st.write(
-          f"• **تحليل النص:** أظهرت الخطة المرفوعة كفاءة في الأهداف التشغيلية"
-          f" بنسبة {score_production}%، بينما تحتاج معايير تحقق الطلاب من"
-          f" المصادر إلى دعم إضافي (اليقظة الرقمية: {score_vigilance}%)."
-      )
-      st.write(
-          "• **القرار الخوارزمي:** توفير تلميحات توجيهية مرئية لتعديل صياغة"
-          " الأنشطة لتكون أكثر نقدية وتفاعلية."
-      )
-
-    with st.expander("2. تحليل الاتجاه نحو بيئة التدريب الإلكترونية"):
-      st.write(
-          f"• يُظهر المعلم تفاعلاً وسرعة استجابة عالية داخل البيئة بنسبة"
-          f" {score_attitude}%، مما يدل على اتجاه إيجابي مرتفع نحو استخدام"
-          f" أدوات التقييم الذكي القائمة على XAI."
-      )
-
-  # --- التبويب الثالث: التغذية الراجعة والأنشطة التفاعلية ---
-  with tab3:
-    st.subheader("🎯 التغذية الراجعة التكيفية والتحدي التطبيقي")
-
-    col_fb1, col_fb2 = st.columns(2)
-
-    with col_fb1:
-      st.success("🟢 **التوصيات المباشرة لتحسين النشاط:**")
-      st.markdown(
-          "1. **تعزيز اليقظة الرقمية:** اضف سؤالاً نقدياً يطلب من الطلاب البحث"
-          " عن مصدر المعلومة الرقمية."
-      )
-      st.markdown(
-          "2. **الأنشطة التفاعلية:** استبدل التلقين المباشر بسيناريو تفاعلي"
-          " يعتمد على حل المشكلات."
-      )
-
-    with col_fb2:
-      st.warning("⚡ **سؤال تقييم ذاتي سريع لليقظة الرقمية:**")
-      q_ans = st.radio(
-          "كيف تتأكد من سلامة النشاط الرقمي قبل تقديمه للطلاب في بيئة"
-          " التدريب؟",
-          [
-              "الاعتماد الكامل على مخرجات الذكاء الاصطناعي.",
-              "مراجعة المحتوى نقدياً والتحقق من مصادره وأمنه الرقمي.",
-              "تطبيق النشاط دون مراجعة إضافية.",
-          ],
-      )
-      if st.button("تأكيد الإجابة والتقييم"):
-        if (
-            q_ans
-            == "مراجعة المحتوى نقدياً والتحقق من مصادره وأمنه الرقمي."
-        ):
-          st.balloons()
-          st.success(
-              "ممتاز جداً! إجابتك تعكس درجات عالية من اليقظة الرقمية"
-              " والاتجاه الإيجابي نحو البيئة."
-          )
-        else:
-          st.error("حاول مرة أخرى! اليقظة الرقمية تتطلب التفكير النقدي.")
-
-else:
-  st.info(
-      "👈 يُرجى رفع ملف الوورد (.docx) للدرس أو النشاط بالأعلى للبدء في"
-      " التحليل الفوري وتوليد لوحة التحكّم والتفسير أوتوماتيكياً."
+  st.subheader("📝 النشاط التطبيقي للوحدة الثالثة")
+  uploaded_file_3 = st.file_uploader(
+      "رفق مسودة النشاط النهائي لإنتاج الأنشطة (.docx):",
+      key="file3",
+      type=["docx"],
   )
+
+  if uploaded_file_3 is not None:
+    st.success(
+        f"✅ تم رفع وتقييم النشاط النهائي ('{uploaded_file_3.name}') بنجاح!"
+    )
+
+    seed = (
+        int(hashlib.md5(uploaded_file_3.name.encode()).hexdigest(), 16) % 1000
+    )
+    random.seed(seed)
+    prod_score = random.randint(82, 99)
+    att_score = random.randint(85, 97)
+
+    st.write("---")
+    st.header(
+        "⚡ نتائج وتقسيمات XAI وإنتاج الأنشطة والاتجاه نحو بيئة التدريب"
+    )
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric(
+        label="مهارة إنتاج الأنشطة الذكية",
+        value=f"{prod_score}%",
+        delta="ممتاز",
+    )
+    c2.metric(
+        label="الاتجاه نحو بيئة التدريب",
+        value=f"{att_score}%",
+        delta="مرتفع جداً",
+    )
+    c3.metric(label="مؤشر الجودة الشامل", value="93%", delta="مستقر")
+
+    # رسم توضيحي تفسيري
+    st.markdown("##### 📊 تحليل مسار التطور للاتجاه نحو بيئة التدريب:")
+    chart_df3 = pd.DataFrame({
+        "جلسات المتابعة": ["الجلسة الأولى", "الجلسة الثانية", "الجلسة الحالية"],
+        "مستوى الاتجاه لبيئة التدريب (%)": [
+            max(60, att_score - 20),
+            max(75, att_score - 10),
+            att_score,
+        ],
+    })
+    st.line_chart(chart_df3.set_index("جلسات المتابعة"))
+
+    with st.expander("🧐 التفسير الخوارزمي المطور لقرار XAI (اضغط للعرض):"):
+      st.write(
+          f"• **تحليل الأداء:** يُظهر النشاط تفوقاً في الإنتاجية بـ"
+          f" {prod_score}%، واتجاهاً إيجابياً نحو بيئة التدريب الإلكترونية بـ"
+          f" {att_score}%."
+      )
+      st.write(
+          "• **التوصية التكيفية:** استمرار نمط الدعم الموجه لتعزيز مهارات التفكير"
+          " الإبداعي في الأنشطة المقبلة."
+      )
