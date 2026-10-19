@@ -5,89 +5,157 @@ import streamlit as st
 
 # إعدادات الصفحة
 st.set_page_config(
-    page_title="بيئة التدريب الذكية المتقدمة - XAI & NotebookLM",
+    page_title="بيئة التدريب الذكية - مسار التعلم التفاعلي",
     page_icon="🎓",
     layout="wide",
 )
 
-# تنسيقات CSS احترافية
+# تنسيقات CSS احترافية لتصميم الإنفوجرافيك التفاعلي (الدوائر والأسهم)
 st.markdown(
     """
     <style>
-    .metric-card {
+    /* تنسيق كروت الإنفوجرافيك */
+    .step-node {
         background-color: #ffffff;
-        border-radius: 12px;
-        padding: 18px;
-        border: 1px solid #e1e8ed;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        border-radius: 15px;
+        padding: 15px;
         text-align: center;
+        border: 2px solid #e0e0e0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        transition: transform 0.2s;
     }
-    .metric-title {
-        font-size: 14px;
-        color: #555;
-        font-weight: 600;
-        margin-bottom: 8px;
-    }
-    .metric-value {
-        font-size: 28px;
+    .step-number {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        border-radius: 50%;
+        color: white;
+        font-size: 22px;
         font-weight: bold;
+        margin: 0 auto 10px auto;
     }
-    .card-purple { color: #6C5CE7; }
-    .card-green { color: #00B894; }
-    .card-blue { color: #0984E3; }
-    .card-violet { color: #e84393; }
+    .num-1 { background-color: #2e86de; }
+    .num-2 { background-color: #ee5253; }
+    .num-3 { background-color: #10ac84; }
+    .num-4 { background-color: #10ac84; }
+    .num-tool { background-color: #f39c12; }
     
-    .progress-bar {
-        height: 5px;
-        border-radius: 3px;
-        margin-top: 10px;
+    .step-title {
+        font-size: 15px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 5px;
     }
     
     .content-box {
         background-color: #f8f9fa;
-        border-radius: 12px;
-        padding: 22px;
-        margin-bottom: 25px;
-        border-right: 6px solid #6C5CE7;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        border-radius: 15px;
+        padding: 25px;
+        margin-top: 20px;
+        border-right: 6px solid #2e86de;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
+    
+    /* إلغاء القائمة الجانبية الافتراضية إذا أردتِ لتركيز الشاشة */
     </style>
 """,
     unsafe_allow_html=True,
 )
 
 # العنوان الرئيسي للدراسة
-st.title("🎓 بيئة التدريب التكيفية لإنتاج الأنشطة الذكية واليقظة الرقمية")
+st.title("🎓 خريطة مسار التدريب الإلكتروني القائم على (XAI)")
 st.caption(
-    "نموذج قائم على الذكاء الاصطناعي القابل للتفسير (XAI) ودعم أدوات NotebookLM"
+    "فاعلية أنماط الدعم التكيفية لإنتاج الأنشطة التعليمية الذكية واليقظة"
+    " الرقمية والاتجاه نحو بيئة التدريب"
 )
 st.write("---")
 
 # ---------------------------------------------------------
-# القائمة الجانبية: الوحدات وأداة NotebookLM المدمجة
+# الجزء الأول: الإنفوجرافيك التفاعلي (خريطة المهارات)
 # ---------------------------------------------------------
-st.sidebar.header("📂 أركان بيئة التدريب")
-selected_section = st.sidebar.radio(
-    "اختر الوحدة أو الأداة للبدء:",
-    [
-        "📘 الوحدة 1: مهارات استخدام بيئة التدريب الذكية",
-        "📙 الوحدة 2: مهارات تصميم الأنشطة واليقظة الرقمية",
-        "📗 الوحدة 3: إنتاج الأنشطة والاتجاه نحو بيئة التدريب",
-        "🤖 نافذة أدوات NotebookLM التفاعلية",
-    ],
-)
+st.subheader("🗺️ خريطة مراحل ومحتوى بيئة التدريب (اختر المرحلة للانتقال):")
 
-st.sidebar.write("---")
-st.sidebar.info(
-    "💡 **أنواع الملفات المدعومة بالرفع:**\n- Word (`.docx`)\n- PDF"
-    " (`.pdf`)\n- PowerPoint (`.pptx`)\n- مقاطع الفيديو/الصوت (`.mp4`,"
-    " `.mp3`)"
-)
+# أزرار اختيار مرحلة الإنفوجرافيك عبر خيارات أفقية متناسقة
+if "current_step" not in st.session_state:
+  st.session_state.current_step = (
+      "1. مهارات استخدام بيئة التدريب الذكية (XAI)"
+  )
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+  st.markdown(
+      """
+        <div class="step-node">
+            <div class="step-number num-1">1</div>
+            <div class="step-title">التعامل مع البيئة</div>
+            <p style="font-size:12px; color:#7f8c8d;">مبادئ XAI والدعم التكيفي</p>
+        </div>
+        """,
+      unsafe_allow_html=True,
+  )
+  if st.button("عرض الوحدة 1", key="btn1", use_container_width=True):
+    st.session_state.current_step = (
+        "1. مهارات استخدام بيئة التدريب الذكية (XAI)"
+    )
+
+with col2:
+  st.markdown(
+      """
+        <div class="step-node">
+            <div class="step-number num-2">2</div>
+            <div class="step-title">تصميم الأنشطة واليقظة</div>
+            <p style="font-size:12px; color:#7f8c8d;">هندسة الأوامر والفحص النقدي</p>
+        </div>
+        """,
+      unsafe_allow_html=True,
+  )
+  if st.button("عرض الوحدة 2", key="btn2", use_container_width=True):
+    st.session_state.current_step = (
+        "2. مهارات تصميم الأنشطة واليقظة الرقمية"
+    )
+
+with col3:
+  st.markdown(
+      """
+        <div class="step-node">
+            <div class="step-number num-3">3</div>
+            <div class="step-title">إنتاج الأنشطة والاتجاه</div>
+            <p style="font-size:12px; color:#7f8c8d;">الإنتاج النهائي والتقييم</p>
+        </div>
+        """,
+      unsafe_allow_html=True,
+  )
+  if st.button("عرض الوحدة 3", key="btn3", use_container_width=True):
+    st.session_state.current_step = (
+        "3. إنتاج الأنشطة والاتجاه نحو بيئة التدريب"
+    )
+
+with col4:
+  st.markdown(
+      """
+        <div class="step-node">
+            <div class="step-number num-tool">🤖</div>
+            <div class="step-title">أداة NotebookLM</div>
+            <p style="font-size:12px; color:#7f8c8d;">المساعد الذكي لبناء المصادر</p>
+        </div>
+        """,
+      unsafe_allow_html=True,
+  )
+  if st.button("فتح NotebookLM", key="btn4", use_container_width=True):
+    st.session_state.current_step = "4. أداة NotebookLM المساندة"
+
+st.write("---")
 
 # ---------------------------------------------------------
-# 1. الوحدة الأولى: مهارات استخدام بيئة التدريب
+# الجزء الثاني: المحتوى والأنشطة التفاعلية بناءً على الإنفوجرافيك
 # ---------------------------------------------------------
-if selected_section == "📘 الوحدة 1: مهارات استخدام بيئة التدريب الذكية":
+
+# --- الوحدة 1 ---
+if (
+    st.session_state.current_step
+    == "1. مهارات استخدام بيئة التدريب الذكية (XAI)"
+):
   st.header(
       "📘 الوحدة الأولى: مهارات استخدام بيئة التدريب الذكية وأنماط الدعم"
   )
@@ -95,210 +163,7 @@ if selected_section == "📘 الوحدة 1: مهارات استخدام بيئ�
   st.markdown(
       """
     <div class="content-box">
-        <h4>🎯 المحتوى الشامل والشرح المعرفي للوحدة:</h4>
-        <p>تركز هذه الوحدة على إكساب المعلم المهارات الأساسية للتفاعل بكفاءة مع بيئة التدريب التكيفية القائمة على الذكاء الاصطناعي القابل للتفسير (XAI):</p>
+        <h4>🎯 الشرح المعرفي للوحدة (1):</h4>
+        <p>تُعنى هذه الوحدة بتأسيس المعلم مهارياً للتفاعل السلس مع بيئة التدريب الذكية القائمة على الشفافية والتفسير الخوارزمي:</p>
         <ul>
-            <li><b>مكونات البيئة التفاعلية:</b> كيفية التنقل السلس بين الأقسام، رفع الأنشطة متعددة الوسائط، وقراءة مؤشرات التطور التلقائية.</li>
-            <li><b>فهم أنماط الدعم التكيفية (Adaptive Support):</b> يقدم النظام دواعم فورية تختلف باختلاف أداء المعلم (دعم مباشر تفصيلي عند الحاجة، أو دعم موجه بالتلميحات).</li>
-            <li><b>الشفافية وتفسير الخوارزميات (XAI Explainability):</b> لا تكتفي البيئة بإعطاء درجات، بل تشرح للمعلم سبب اختيار كل درجة وكيفية تحسينها.</li>
-        </ul>
-    </div>
-    """,
-      unsafe_allow_html=True,
-  )
-
-  col_img, col_chart = st.columns([1, 1])
-  with col_img:
-    st.subheader("🖼️ الشرح التخطيطي لمسار الدعم التكيفي")
-    st.info(
-        "📍 **المسار التفاعلي:** \n1. رفع النشاط ⬅️ 2. التحليل الخوارزمي ⬅️"
-        " 3. عرض الشرح التفسيري (XAI) ⬅️ 4. تقديم نمط الدعم المخصص"
-    )
-
-  with col_chart:
-    st.subheader("📊 نسب الاستفادة المرجوة من أدوات البيئة")
-    u1_data = pd.DataFrame({
-        "المهارة": [
-            "سهولة الاستخدام",
-            "فهم التغذية الراجعة",
-            "التفاعل مع الدعم",
-            "المرونة",
-        ],
-        "نسبة التمكن (%)": [92, 88, 85, 90],
-    })
-    st.bar_chart(u1_data.set_index("المهارة"))
-
-  st.write("---")
-  st.subheader("📝 رفع النشاط التطبيقي للوحدة الأولى (جميع الصيغ مدعومة)")
-  up_1 = st.file_uploader(
-      "ارفق ملف النشاط أو الدرس الخاص بالوحدة الأولى:",
-      key="u1",
-      type=["docx", "pdf", "pptx", "mp4", "mp3"],
-  )
-
-  if up_1 is not None:
-    st.success(f"✅ تم رفع وقراءة الملف '{up_1.name}' بنجاح!")
-    seed = int(hashlib.md5(up_1.name.encode()).hexdigest(), 16) % 1000
-    random.seed(seed)
-    s1 = random.randint(82, 97)
-
-    st.subheader("⚡ التقييم والتفسير الخوارزمي المباشر (XAI Result)")
-    st.metric(
-        label="مؤشر إتقان مهارات استخدام البيئة",
-        value=f"{s1}%",
-        delta="متقدم جداً",
-    )
-    with st.expander("🧐 التفسير الخوارزمي المطور:"):
-      st.write(
-          f"أظهر المعلم تمكناً عالياً بنسبة {s1}% في استيعاب التوجيهات"
-          " والتفاعل مع واجهة البيئة الذكية."
-      )
-
-# ---------------------------------------------------------
-# 2. الوحدة الثانية: مهارات تصميم الأنشطة واليقظة الرقمية
-# ---------------------------------------------------------
-elif (
-    selected_section == "📙 الوحدة 2: مهارات تصميم الأنشطة واليقظة الرقمية"
-):
-  st.header(
-      "📙 الوحدة الثانية: مهارات صياغة وتصميم الأنشطة الذكية واليقظة الرقمية"
-  )
-
-  st.markdown(
-      """
-    <div class="content-box">
-        <h4>🎯 المحتوى الشامل والشرح المعرفي للوحدة:</h4>
-        <p>تستهدف هذه الوحدة تمكين المعلم من مهارات التصميم الفعال للأنشطة التعليمية وتنمية الفحص النقدي لمخرجات الذكاء الاصطناعي:</p>
-        <ul>
-            <li><b>هندسة الأوامر (Prompt Engineering) للأنشطة:</b> صياغة التعليمات البرمجية بدقة للحصول على أنشطة تفاعلية تخاطب مستويات التفكير العليا لدى طلاب الحلقة الأولى.</li>
-            <li><b>اليقظة الرقمية (Digital Vigilance):</b> رصد الأخطاء الشائعة والتشوهات المعرفية في المحتوى الرقمي المولد آلياً قبل تقديمه للطلاب.</li>
-            <li><b>السلامة والأمن المعرفي:</b> التأكد من خلو الأنشطة من التحيزات والأفكار غير الدقيقة ومطابقتها للمتطلبات التربوية.</li>
-        </ul>
-    </div>
-    """,
-      unsafe_allow_html=True,
-  )
-
-  col_chart1, col_chart2 = st.columns(2)
-  with col_chart1:
-    st.subheader("📊 أبعاد اليقظة الرقمية في التصميم")
-    u2_data = pd.DataFrame({
-        "البعد": [
-            "التحقق من المصادر",
-            "كشف الانحياز",
-            "السلامة المعرفية",
-            "الدقة التربوية",
-        ],
-        "المستوى (%)": [88, 82, 94, 89],
-    })
-    st.bar_chart(u2_data.set_index("البعد"))
-
-  with col_chart2:
-    st.subheader("💡 خطوات تطبيق اليقظة الرقمية")
-    st.markdown(
-        "1. **التوليد الآلي:** استخدام AI لإنتاج النشاط.\n2. **الفحص النقدي:**"
-        " التأكد من صحة المعلومات.\n3. **التعديل والتكييف:** صياغة النشاط"
-        " بلغة تناسب الطلاب.\n4. **الاعتماد النهائي:** إقرار النشاط للاستخدام."
-    )
-
-  st.write("---")
-  st.subheader("📝 رفع نشاط اليقظة الرقمية والتصميم (جميع الصيغ مدعومة)")
-  up_2 = st.file_uploader(
-      "ارفق مسودة النشاط التعليمي للوحدة الثانية:",
-      key="u2",
-      type=["docx", "pdf", "pptx", "mp4", "mp3"],
-  )
-
-  if up_2 is not None:
-    st.success(f"✅ تم رفع وقراءة الملف '{up_2.name}' بنجاح!")
-    seed = int(hashlib.md5(up_2.name.encode()).hexdigest(), 16) % 1000
-    random.seed(seed)
-    s2 = random.randint(78, 95)
-    v2 = random.randint(84, 98)
-
-    st.subheader("⚡ نتائج التحليل والتفسير التكيفي")
-    m1, m2 = st.columns(2)
-    m1.metric(
-        label="مهارة تصميم الأنشطة الذكية", value=f"{s2}%", delta="ممتاز"
-    )
-    m2.metric(label="مؤشر اليقظة الرقمية", value=f"{v2}%", delta="+5% مرتفع")
-
-# ---------------------------------------------------------
-# 3. الوحدة الثالثة: إنتاج الأنشطة والاتجاه نحو بيئة التدريب
-# ---------------------------------------------------------
-elif (
-    selected_section == "📗 الوحدة 3: إنتاج الأنشطة والاتجاه نحو بيئة التدريب"
-):
-  st.header(
-      "📗 الوحدة الثالثة: إنتاج الأنشطة الذكية المتكاملة وقياس الاتجاه نحو بيئة"
-      " التدريب"
-  )
-
-  st.markdown(
-      """
-    <div class="content-box">
-        <h4>🎯 المحتوى الشامل والشرح المعرفي للوحدة:</h4>
-        <p>تتوج هذه الوحدة المسار التدريبي بتطبيق مهارات الإنتاج النهائي وتحديد تقبل المعلم لبيئة التدريب الإلكترونية:</p>
-        <ul>
-            <li><b>الإنتاج المتقدم للأنشطة:</b> تصميم أنشطة قائمة على حل المشكلات والتعلم باللعب وتنمية الوعي البيئي والتكنولوجي.</li>
-            <li><b>الاتجاه نحو بيئة التدريب (Attitude toward Training Environment):</b> قياس ارتياح المعلم وقابليته لمواصلة التدرب باستخدام نظم الـ XAI والذكاء الاصطناعي.</li>
-            <li><b>التقييم الذاتي الشامل:</b> قراءة تقارير الأداء ومتابعة النمو المهني الذاتي.</li>
-        </ul>
-    </div>
-    """,
-      unsafe_allow_html=True,
-  )
-
-  st.subheader("📊 مسار نمو اتجاه المعلم نحو بيئة التدريب عبر الجلسات")
-  u3_chart = pd.DataFrame({
-      "الجلسات التدريبية": ["الجلسة الأولى", "الجلسة الثانية", "الجلسة الثالثة"],
-      "درجة الاتجاه الإيجابي (%)": [68, 82, 95],
-      "جودة إنتاج الأنشطة (%)": [62, 79, 92],
-  })
-  st.line_chart(u3_chart.set_index("الجلسات التدريبية"))
-
-  st.write("---")
-  st.subheader("📝 رفع المنتج النهائي للأنشطة التعليمية (جميع الصيغ مدعومة)")
-  up_3 = st.file_uploader(
-      "ارفق المنتج النهائي للنشاط التعليمي الذكي:",
-      key="u3",
-      type=["docx", "pdf", "pptx", "mp4", "mp3"],
-  )
-
-  if up_3 is not None:
-    st.success(f"✅ تم رفع وتقييم المنتج النهائي '{up_3.name}' بنجاح!")
-    seed = int(hashlib.md5(up_3.name.encode()).hexdigest(), 16) % 1000
-    random.seed(seed)
-    s3 = random.randint(85, 99)
-    att3 = random.randint(88, 98)
-
-    st.subheader("⚡ التقييم النهائي الشامل (Final Smart Analytics)")
-    c1, c2, c3 = st.columns(3)
-    c1.metric(
-        label="جودة إنتاج النشاط الذكي", value=f"{s3}%", delta="مكتمل"
-    )
-    c2.metric(
-        label="الاتجاه نحو بيئة التدريب", value=f"{att3}%", delta="مرتفع جداً"
-    )
-    c3.metric(label="مؤشر الثقة التكيفي", value="96%", delta="ممتاز")
-
-# ---------------------------------------------------------
-# 4. نافذة أدوات NotebookLM المدمجة
-# ---------------------------------------------------------
-elif selected_section == "🤖 نافذة أدوات NotebookLM التفاعلية":
-  st.header("🤖 نافذة أداة NotebookLM المدمجة داخل بيئة التدريب")
-  st.write(
-      "يمكنك الآن استخدام منصة **NotebookLM** مباشرة لاستخراج الأفكار والمستندات"
-      " وإنشاء الملاحظات الصوتية والنصية لدعم إنتاج أنشطتك التعليمية:"
-  )
-
-  st.info(
-      "🔗 **طريقتان لاستخدام NotebookLM داخل بيئة التدريب:**\n1. استخدام النافذة"
-      " المباشرة أدناه.\n2. أو الضغط على الرابط المباشر للفتح في تبويب مستقل:"
-      " [فتح NotebookLM في نافذة خارجية](https://notebooklm.google.com/)"
-  )
-
-  # تضمين شاشة NotebookLM مباشرة في البيئة عبر iframe
-  st.components.v1.iframe(
-      "https://notebooklm.google.com/", height=650, scrolling=True
-  )
+            <li><b>واجهة البيئة والتنقل:</b> استعراض عناصر التحكم وكيفية متابعة الرسوم البيانية المؤشر
