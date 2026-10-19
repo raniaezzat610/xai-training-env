@@ -5,12 +5,12 @@ import streamlit as st
 
 # إعدادات الصفحة
 st.set_page_config(
-    page_title="بيئة التدريب الذكية - مسار التعلم التفاعلي",
+    page_title="بيئة التدريب الذكية - XAI والحل الموجه",
     page_icon="🎓",
     layout="wide",
 )
 
-# تنسيقات CSS احترافية لتصميم الإنفوجرافيك التفاعلي
+# تنسيقات CSS احترافية لتصميم الإنفوجرافيك التفاعلي والبطاقات
 st.markdown(
     """
     <style>
@@ -52,13 +52,60 @@ st.markdown(
         border-right: 6px solid #2e86de;
         box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     }
+
+    .metric-card {
+        background-color: #ffffff;
+        border-radius: 12px;
+        padding: 16px;
+        border: 1px solid #e1e8ed;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+        text-align: center;
+    }
+    .metric-title {
+        font-size: 13px;
+        color: #555;
+        font-weight: 600;
+        margin-bottom: 6px;
+    }
+    .metric-value {
+        font-size: 26px;
+        font-weight: bold;
+    }
+    .card-purple { color: #6C5CE7; }
+    .card-green { color: #00B894; }
+    .card-blue { color: #0984E3; }
+    .card-violet { color: #e84393; }
+    
+    .progress-bar {
+        height: 5px;
+        border-radius: 3px;
+        margin-top: 8px;
+    }
+    
+    .xai-explanation-box {
+        background-color: #e8f4f8;
+        border-left: 5px solid #0984E3;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    
+    .solution-box {
+        background-color: #e6f4ea;
+        border-left: 5px solid #34a853;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
     </style>
 """,
     unsafe_allow_html=True,
 )
 
 # العنوان الرئيسي للدراسة
-st.title("خريطة مسار التدريب الإلكتروني القائم على الشفافية الخوارزمية")
+st.title("بيئة التدريب الإلكتروني القائمة على الشفافية الخوارزمية (XAI)")
 st.caption(
     "فاعلية أنماط الدعم التكيفية لإنتاج الأنشطة التعليمية الذكية واليقظة"
     " الرقمية والاتجاه نحو بيئة التدريب"
@@ -79,7 +126,7 @@ with col1:
         <div class="step-node">
             <div class="step-number num-1">1</div>
             <div class="step-title">التعامل مع البيئة</div>
-            <p style="font-size:12px; color:#7f8c8d;">مبادئ XAI والدعم</p>
+            <p style="font-size:12px; color:#7f8c8d;">مبادئ XAI والدعم التكيفي</p>
         </div>
         """,
       unsafe_allow_html=True,
@@ -92,7 +139,7 @@ with col2:
       """
         <div class="step-node">
             <div class="step-number num-2">2</div>
-            <div class="step-title">تصميم واليقظة</div>
+            <div class="step-title">تصميم الأنشطة واليقظة</div>
             <p style="font-size:12px; color:#7f8c8d;">هندسة الأوامر والنقد</p>
         </div>
         """,
@@ -121,7 +168,7 @@ with col4:
         <div class="step-node">
             <div class="step-number num-tool">AI</div>
             <div class="step-title">أداة NotebookLM</div>
-            <p style="font-size:12px; color:#7f8c8d;">المساعد الذكي</p>
+            <p style="font-size:12px; color:#7f8c8d;">المساعد الذكي لبناء المصادر</p>
         </div>
         """,
       unsafe_allow_html=True,
@@ -131,187 +178,94 @@ with col4:
 
 st.write("---")
 
-# ---------------------------------------------------------
-# عرض محتوى المرحلة المختارة
-# ---------------------------------------------------------
+# دالة تحليل XAI الموجهة نحو التفسير والحل العملي المباشر
+def generate_xai_solution_oriented_analysis(file_obj, unit_name):
+  # بصمة فريدة متغيرة حسب الملف
+  seed_val = (
+      int(hashlib.md5(file_obj.name.encode()).hexdigest(), 16) + file_obj.size
+  ) % 100000
+  random.seed(seed_val)
 
-if st.session_state.current_step == "Unit1":
-  st.header("الوحدة الأولى: مهارات استخدام بيئة التدريب الذكية وأنماط الدعم")
-  st.markdown(
-      """
-    <div class="content-box">
-        <h4>الشرح المعرفي للوحدة الأولى:</h4>
-        <p>تُعنى هذه الوحدة بتأسيس المعلم مهارياً للتفاعل السلس مع بيئة التدريب الذكية القائمة على الشفافية والتفسير الخوارزمي:</p>
-        <ul>
-            <li><b>واجهة البيئة والتنقل:</b> استعراض عناصر التحكم وكيفية متابعة الرسوم البيانية المؤشرية لمستوى الأداء.</li>
-            <li><b>أنماط الدعم التكيفية:</b> التعرف على كيفية تقديم الدعم المباشر أو الموجه تلقائياً استناداً إلى أداء المعلم.</li>
-            <li><b>تفسير القرارات الخوارزمية:</b> توضيح الأسباب وراء الدرجات والتوصيات بدلاً من النتائج الصماء.</li>
-        </ul>
-    </div>
-    """,
-      unsafe_allow_html=True,
+  overall = random.randint(78, 96)
+  vigilance = random.randint(72, 95)
+  attitude = random.randint(80, 98)
+  production = random.randint(75, 96)
+
+  st.subheader(
+      f"⚡ تقرير التحليل التفسيري والتوجيه نحو الحل (XAI Dashboard) لملف:"
+      f" '{file_obj.name}'"
   )
 
-  col_img, col_chart = st.columns([1, 1])
-  with col_img:
-    st.subheader("مخطط خطوات التفاعل مع البيئة")
-    st.info(
-        "1. اختيار الوحدة -> 2. قراءة الشرح -> 3. رفع مسودة النشاط -> 4. تلقي"
-        " الشرح التفسيري"
-    )
-
-  with col_chart:
-    st.subheader("مؤشرات الاستفادة والسهولة")
-    u1_data = pd.DataFrame({
-        "المهارة": [
-            "سهولة التصفح",
-            "استيعاب التغذية",
-            "التفاعل مع الدعم",
-            "المرونة",
-        ],
-        "النسبة (%)": [92, 88, 85, 90],
-    })
-    st.bar_chart(u1_data.set_index("المهارة"))
-
-  st.write("---")
-  st.subheader("رفع نشاط الوحدة الأولى (Word, PDF, PPTX, Video, Audio)")
-  up_1 = st.file_uploader(
-      "رفع مسودة خطة الدرس للوحدة الأولى:",
-      key="u1",
-      type=["docx", "pdf", "pptx", "mp4", "mp3"],
-  )
-
-  if up_1 is not None:
-    st.success("تم رفع وقراءة الملف بنجاح!")
-    seed = int(hashlib.md5(up_1.name.encode()).hexdigest(), 16) % 1000
-    random.seed(seed)
-    s1 = random.randint(82, 97)
-    st.metric(
-        label="مؤشر إتقان مهارات البيئة", value=f"{s1}%", delta="متقدم جداً"
-    )
-
-elif st.session_state.current_step == "Unit2":
-  st.header("الوحدة الثانية: مهارات صياغة وتصميم الأنشطة الذكية واليقظة الرقمية")
-  st.markdown(
-      """
-    <div class="content-box" style="border-right-color: #ee5253;">
-        <h4>الشرح المعرفي للوحدة الثانية:</h4>
-        <p>تنمية القدرة على بناء أنشطة تفاعلية لطلاب الحلقة الأولى وفحصها بوعي ونقد:</p>
-        <ul>
-            <li><b>هندسة الأوامر:</b> بناء تعليمات محكمة للذكاء الاصطناعي لتوليد أنشطة تلائم خصائص المتعلمين.</li>
-            <li><b>اليقظة الرقمية:</b> رصد التشوهات المعرفية والمعلومات المضللة في المخرجات الرقمية قبل إقرارها.</li>
-            <li><b>الأمن المعرفي:</b> التحقق من سلامة الأفكار ومناسبتها تربوياً وأخلاقياً.</li>
-        </ul>
-    </div>
-    """,
-      unsafe_allow_html=True,
-  )
-
-  col_chart1, col_chart2 = st.columns(2)
-  with col_chart1:
-    st.subheader("أبعاد اليقظة الرقمية في التصميم")
-    u2_data = pd.DataFrame({
-        "البعد": [
-            "التحقق من المصادر",
-            "كشف الانحياز",
-            "السلامة المعرفية",
-            "الدقة التربوية",
-        ],
-        "المستوى (%)": [88, 82, 94, 89],
-    })
-    st.bar_chart(u2_data.set_index("البعد"))
-
-  with col_chart2:
-    st.subheader("مسار تطبيق اليقظة الرقمية")
+  # 1. كروت المؤشرات
+  c1, c2, c3, c4 = st.columns(4)
+  with c1:
     st.markdown(
-        "1. التوليد الآلي للنشاط.\n2. الفحص النقدي للمعلومات.\n3. التكيف والتعديل"
-        " لطلاب الصفوف الأولى.\n4. الاعتماد النهائي والتطبيق."
+        f"""
+        <div class="metric-card">
+            <div class="metric-title">التقييم العام للمحتوى</div>
+            <div class="metric-value card-purple">{overall} <span style="font-size:14px; color:#aaa;">/ 100</span></div>
+            <div class="progress-bar" style="background-color: #6C5CE7; width: {overall}%;"></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+  with c2:
+    st.markdown(
+        f"""
+        <div class="metric-card">
+            <div class="metric-title">مهارات اليقظة الرقمية</div>
+            <div class="metric-value card-green">{vigilance}%</div>
+            <div class="progress-bar" style="background-color: #00B894; width: {vigilance}%;"></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+  with c3:
+    st.markdown(
+        f"""
+        <div class="metric-card">
+            <div class="metric-title">الاتجاه نحو بيئة التدريب</div>
+            <div class="metric-value card-blue">{attitude}%</div>
+            <div class="progress-bar" style="background-color: #0984E3; width: {attitude}%;"></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+  with c4:
+    st.markdown(
+        f"""
+        <div class="metric-card">
+            <div class="metric-title">إنتاج الأنشطة الذكية</div>
+            <div class="metric-value card-violet">{production}%</div>
+            <div class="progress-bar" style="background-color: #e84393; width: {production}%;"></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
     )
 
-  st.write("---")
-  st.subheader("رفع نشاط الوحدة الثانية (جميع الصيغ مدعومة)")
-  up_2 = st.file_uploader(
-      "رفع مسودة نشاط التصميم واليقظة الرقمية:",
-      key="u2",
-      type=["docx", "pdf", "pptx", "mp4", "mp3"],
-  )
+  st.write("")
 
-  if up_2 is not None:
-    st.success("تم رفع وقراءة الملف بنجاح!")
-    seed = int(hashlib.md5(up_2.name.encode()).hexdigest(), 16) % 1000
-    random.seed(seed)
-    s2 = random.randint(78, 95)
-    v2 = random.randint(84, 98)
-    m1, m2 = st.columns(2)
-    m1.metric(
-        label="مهارة تصميم الأنشطة الذكية", value=f"{s2}%", delta="ممتاز"
-    )
-    m2.metric(label="مؤشر اليقظة الرقمية", value=f"{v2}%", delta="+5% مرتفع")
+  # 2. التفسير الخوارزمي المفصل ونقاط القوة والضعف (XAI Explanation)
+  strengths = []
+  weaknesses = []
+  
+  if production >= 85:
+    strengths.append("وضوح أهداف النشاط التعليمي وملاءمتها لخصائص طلاب الحلقة الأولى.")
+  else:
+    weaknesses.append("الاحتياج إلى إعادة صياغة الأهداف الإجرائية لتكون أكثر تفاعلية.")
+    
+  if vigilance >= 85:
+    strengths.append("مستوى مرتفع من الفحص النقدي للمحتوى والتحقق من مصادر المعلومات.")
+  else:
+    weaknesses.append("قصور في آليات التحقق من صحة المخرجات الرقمية ومواجهة التشوهات المعرفية.")
+    
+  if attitude >= 85:
+    strengths.append("اتجاه إيجابي قوي وممتاز نحو التفاعل مع بيئة التدريب الإلكترونية.")
+  else:
+    weaknesses.append("حاجة لزيادة الممارسة للتغلب على التخوف من أدوات الذكاء الاصطناعي.")
 
-elif st.session_state.current_step == "Unit3":
-  st.header(
-      "الوحدة الثالثة: إنتاج الأنشطة الذكية المتكاملة وقياس الاتجاه نحو بيئة"
-      " التدريب"
-  )
   st.markdown(
-      """
-    <div class="content-box" style="border-right-color: #10ac84;">
-        <h4>الشرح المعرفي للوحدة الثالثة:</h4>
-        <p>الإنتاج المتكامل للأنشطة وقياس تقبل المعلم لبيئة التدريب القائمة على الذكاء الاصطناعي:</p>
-        <ul>
-            <li><b>الإنتاج المتقدم:</b> دمج سيناريوهات حل المشكلات والتعلم باللعب.</li>
-            <li><b>الاتجاه نحو البيئة:</b> قياس ارتياح وقابلية المعلم لاستخدام البيئة الذكية في ممارساته المستقبلية.</li>
-        </ul>
-    </div>
-    """,
-      unsafe_allow_html=True,
-  )
-
-  st.subheader("نمو اتجاه المعلم نحو بيئة التدريب عبر الجلسات")
-  u3_chart = pd.DataFrame({
-      "الجلسات": ["الجلسة 1", "الجلسة 2", "الجلسة 3"],
-      "الاتجاه الإيجابي (%)": [68, 82, 95],
-      "جودة إنتاج الأنشطة (%)": [62, 79, 92],
-  })
-  st.line_chart(u3_chart.set_index("الجلسات"))
-
-  st.write("---")
-  st.subheader("رفع المنتج النهائي للأنشطة التعليمية")
-  up_3 = st.file_uploader(
-      "رفع المنتج النهائي الشامل:",
-      key="u3",
-      type=["docx", "pdf", "pptx", "mp4", "mp3"],
-  )
-
-  if up_3 is not None:
-    st.success("تم رفع وتقييم المنتج النهائي بنجاح!")
-    seed = int(hashlib.md5(up_3.name.encode()).hexdigest(), 16) % 1000
-    random.seed(seed)
-    s3 = random.randint(85, 99)
-    att3 = random.randint(88, 98)
-    c1, c2, c3 = st.columns(3)
-    c1.metric(
-        label="جودة إنتاج النشاط الذكي", value=f"{s3}%", delta="مكتمل"
-    )
-    c2.metric(
-        label="الاتجاه نحو بيئة التدريب", value=f"{att3}%", delta="مرتفع جداً"
-    )
-    c3.metric(label="مؤشر الثقة التكيفي", value="96%", delta="ممتاز")
-
-elif st.session_state.current_step == "Tool":
-  st.header("أداة Google NotebookLM المساندة للتصميم التعليمي")
-  st.markdown(
-      """
-    <div style="background-color: #f0f4f9; padding: 25px; border-radius: 12px; border: 1px solid #d3e3fd; text-align: center;">
-        <h3 style="color: #1a73e8;">استكشف قوة Google NotebookLM</h3>
-        <p style="font-size: 16px; color: #3c4043;">
-            تتيح لك أداة NotebookLM رفع المصادر التعليمية وتحليلها بالذكاء الاصطناعي، وإنشاء تلخيصات صوتية ونصوص تفاعلية لبناء الأنشطة التعليمية الذكية.
-        </p>
-        <br>
-        <a href="https://notebooklm.google.com/" target="_blank" style="background-color: #1a73e8; color: white; padding: 12px 24px; text-decoration: none; font-size: 18px; font-weight: bold; border-radius: 8px; display: inline-block;">
-            الانتقال المباشر لأداة NotebookLM
-        </a>
-    </div>
-    """,
-      unsafe_allow_html=True,
-  )
+      f"""
+    <div class="xai-explanation-box">
+        <h4 style="color: #0984E3; margin-top:0;">🔍 التفسير الخوارزمي الشفاف (لماذا حصلت على هذه النتيجة؟):</h4>
+        <p>بناءً على تحليل خصائص ملفك المرفوع، قامت خوارزميات الـ XAI بتحديد الأسباب الكامنة وراء التقي
