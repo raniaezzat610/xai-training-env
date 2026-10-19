@@ -10,7 +10,7 @@ st.set_page_config(
     layout="wide",
 )
 
-# تنسيقات CSS احترافية لتصميم الإنفوجرافيك التفاعلي والبطاقات
+# تنسيقات CSS احترافية
 st.markdown(
     """
     <style>
@@ -80,24 +80,6 @@ st.markdown(
         height: 5px;
         border-radius: 3px;
         margin-top: 8px;
-    }
-    
-    .xai-explanation-box {
-        background-color: #e8f4f8;
-        border-left: 5px solid #0984E3;
-        padding: 20px;
-        border-radius: 10px;
-        margin-top: 15px;
-        margin-bottom: 15px;
-    }
-    
-    .solution-box {
-        background-color: #e6f4ea;
-        border-left: 5px solid #34a853;
-        padding: 20px;
-        border-radius: 10px;
-        margin-top: 15px;
-        margin-bottom: 15px;
     }
     </style>
 """,
@@ -178,9 +160,9 @@ with col4:
 
 st.write("---")
 
-# دالة تحليل XAI الموجهة نحو التفسير والحل العملي المباشر
-def generate_xai_solution_oriented_analysis(file_obj, unit_name):
-  # بصمة فريدة متغيرة حسب الملف
+
+# دالة تحليل XAI التفسيرية والحلول الإجرائية
+def generate_xai_analysis(file_obj, unit_name):
   seed_val = (
       int(hashlib.md5(file_obj.name.encode()).hexdigest(), 16) + file_obj.size
   ) % 100000
@@ -192,80 +174,15 @@ def generate_xai_solution_oriented_analysis(file_obj, unit_name):
   production = random.randint(75, 96)
 
   st.subheader(
-      f"⚡ تقرير التحليل التفسيري والتوجيه نحو الحل (XAI Dashboard) لملف:"
-      f" '{file_obj.name}'"
+      "⚡ تقرير التحليل التفسيري والتوجيه نحو الحل (XAI Dashboard) لملف: "
+      + file_obj.name
   )
 
   # 1. كروت المؤشرات
   c1, c2, c3, c4 = st.columns(4)
   with c1:
-    st.markdown(
-        f"""
-        <div class="metric-card">
-            <div class="metric-title">التقييم العام للمحتوى</div>
-            <div class="metric-value card-purple">{overall} <span style="font-size:14px; color:#aaa;">/ 100</span></div>
-            <div class="progress-bar" style="background-color: #6C5CE7; width: {overall}%;"></div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    st.metric("التقييم العام للمحتوى", str(overall) + " / 100")
   with c2:
-    st.markdown(
-        f"""
-        <div class="metric-card">
-            <div class="metric-title">مهارات اليقظة الرقمية</div>
-            <div class="metric-value card-green">{vigilance}%</div>
-            <div class="progress-bar" style="background-color: #00B894; width: {vigilance}%;"></div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
+    st.metric("مهارات اليقظة الرقمية", str(vigilance) + "%")
   with c3:
-    st.markdown(
-        f"""
-        <div class="metric-card">
-            <div class="metric-title">الاتجاه نحو بيئة التدريب</div>
-            <div class="metric-value card-blue">{attitude}%</div>
-            <div class="progress-bar" style="background-color: #0984E3; width: {attitude}%;"></div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-  with c4:
-    st.markdown(
-        f"""
-        <div class="metric-card">
-            <div class="metric-title">إنتاج الأنشطة الذكية</div>
-            <div class="metric-value card-violet">{production}%</div>
-            <div class="progress-bar" style="background-color: #e84393; width: {production}%;"></div>
-        </div>
-        """,
-        unsafe_allow_html=True,
-    )
-
-  st.write("")
-
-  # 2. التفسير الخوارزمي المفصل ونقاط القوة والضعف (XAI Explanation)
-  strengths = []
-  weaknesses = []
-  
-  if production >= 85:
-    strengths.append("وضوح أهداف النشاط التعليمي وملاءمتها لخصائص طلاب الحلقة الأولى.")
-  else:
-    weaknesses.append("الاحتياج إلى إعادة صياغة الأهداف الإجرائية لتكون أكثر تفاعلية.")
-    
-  if vigilance >= 85:
-    strengths.append("مستوى مرتفع من الفحص النقدي للمحتوى والتحقق من مصادر المعلومات.")
-  else:
-    weaknesses.append("قصور في آليات التحقق من صحة المخرجات الرقمية ومواجهة التشوهات المعرفية.")
-    
-  if attitude >= 85:
-    strengths.append("اتجاه إيجابي قوي وممتاز نحو التفاعل مع بيئة التدريب الإلكترونية.")
-  else:
-    weaknesses.append("حاجة لزيادة الممارسة للتغلب على التخوف من أدوات الذكاء الاصطناعي.")
-
-  st.markdown(
-      f"""
-    <div class="xai-explanation-box">
-        <h4 style="color: #0984E3; margin-top:0;">🔍 التفسير الخوارزمي الشفاف (لماذا حصلت على هذه النتيجة؟):</h4>
-        <p>بناءً على تحليل خصائص ملفك المرفوع، قامت خوارزميات الـ XAI بتحديد الأسباب الكامنة وراء التقي
+    st.metric("
